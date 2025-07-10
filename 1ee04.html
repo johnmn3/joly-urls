@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4285f4;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        a {
+            color: #4285f4;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        // Analytics tracking
+        async function trackClick() {
+            const analyticsUrl = 'https://script.google.com/macros/s/AKfycbyvWlMjCl6E8yrl9NZat82M_FSFrOpDWU0hKnBldDwZW3kBBhNCiMB2ng3Fifq0cabJ/exec';
+            const data = {
+                action: 'track',
+                shortCode: '1ee04',
+                timestamp: new Date().toISOString(),
+                referrer: document.referrer || 'direct',
+                userAgent: navigator.userAgent,
+                // Get URL parameters if any
+                params: window.location.search
+            };
+            
+            try {
+                // Send analytics data (fire and forget)
+                fetch(analyticsUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                }).catch(() => {
+                    // Silently fail - don't block redirect
+                });
+            } catch (e) {
+                // Silently fail
+            }
+            
+            // Redirect after a tiny delay to ensure analytics fires
+            setTimeout(() => {
+                window.location.href = "https://script.google.com/macros/s/AKfycbyvWlMjCl6E8yrl9NZat82M_FSFrOpDWU0hKnBldDwZW3kBBhNCiMB2ng3Fifq0cabJ/exec?formId=c57e736e-5959-4cfa-b788-956f20565073";
+            }, 100);
+        }
+        
+        // Start tracking and redirect when page loads
+        window.addEventListener('load', trackClick);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="spinner"></div>
+        <h2>Redirecting...</h2>
+        <p>If you are not redirected automatically, <a href="https://script.google.com/macros/s/AKfycbyvWlMjCl6E8yrl9NZat82M_FSFrOpDWU0hKnBldDwZW3kBBhNCiMB2ng3Fifq0cabJ/exec?formId=c57e736e-5959-4cfa-b788-956f20565073">click here</a>.</p>
+    </div>
+</body>
+</html>
