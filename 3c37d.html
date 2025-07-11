@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbySdr86U88J0UvUe9X94o10QooZ-w30yoafdv374BpyDArdJAjmm7n349-Rw3EM8wWb/exec">
+    <title>Redirecting...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4285f4;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        a {
+            color: #4285f4;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        // Enhanced analytics tracking
+        async function trackClick() {
+            const analyticsUrl = 'AKfycbySdr86U88J0UvUe9X94o10QooZ-w30yoafdv374BpyDArdJAjmm7n349-Rw3EM8wWb';
+            
+            // Gather enhanced data
+            const data = {
+                action: 'track',
+                shortCode: '3c37d',
+                timestamp: new Date().toISOString(),
+                referrer: document.referrer || 'direct',
+                userAgent: navigator.userAgent,
+                params: window.location.search,
+                
+                // Enhanced browser data
+                language: navigator.language,
+                platform: navigator.platform,
+                screenResolution: screen.width + 'x' + screen.height,
+                viewport: window.innerWidth + 'x' + window.innerHeight,
+                colorDepth: screen.colorDepth,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                timezoneOffset: new Date().getTimezoneOffset(),
+                
+                // Browser capabilities
+                cookiesEnabled: navigator.cookieEnabled,
+                doNotTrack: navigator.doNotTrack,
+                online: navigator.onLine,
+                
+                // Performance data
+                loadTime: performance.timing ? 
+                    performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart : null
+            };
+            
+            // Get IP via external service (optional)
+            try {
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                data.clientIP = ipData.ip;
+            } catch (e) {
+                // IP fetch failed, continue without it
+            }
+            
+            // Create a fingerprint
+            const fingerprint = btoa([
+                navigator.userAgent,
+                navigator.language,
+                screen.width + 'x' + screen.height,
+                new Date().getTimezoneOffset()
+            ].join('|')).substring(0, 16);
+            
+            data.fingerprint = fingerprint;
+            
+            try {
+                // Send enhanced analytics
+                fetch(analyticsUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                }).catch(() => {
+                    // Silently fail
+                });
+            } catch (e) {
+                // Silently fail
+            }
+            
+            // Redirect after a tiny delay
+            setTimeout(() => {
+                window.location.href = "https://script.google.com/macros/s/AKfycbySdr86U88J0UvUe9X94o10QooZ-w30yoafdv374BpyDArdJAjmm7n349-Rw3EM8wWb/exec";
+            }, 150);
+        }
+        
+        // Start tracking when page loads
+        window.addEventListener('load', trackClick);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="spinner"></div>
+        <h2>Redirecting...</h2>
+        <p>If you are not redirected automatically, <a href="https://script.google.com/macros/s/AKfycbySdr86U88J0UvUe9X94o10QooZ-w30yoafdv374BpyDArdJAjmm7n349-Rw3EM8wWb/exec">click here</a>.</p>
+    </div>
+</body>
+</html>
